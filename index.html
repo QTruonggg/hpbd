@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        :root{
+            --text-color: rgba(255, 255, 255, 0.9);
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html{
+            font-size: 62.5%;
+            font-family: 'Great Vibes', cursive;
+        }
+        .wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url(./1.jpg) ;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .wrapper::before{
+            content: "";
+            background-color: rgba(0, 0, 0, .5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        .box-content{
+            width: 800px;
+            height: 400px;
+            z-index: 10;
+            text-align: center;
+            color: var(--text-color);
+            user-select: none;
+        }
+        .heading{
+            font-size: 6rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+        }
+        .sub-content{
+            margin-top: 24px;
+            font-size: 5rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+        }
+        .btn{
+            position: relative;
+            width: 160px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 40px;
+            font-size: 2rem;
+            font-family: sans-serif;
+            cursor: pointer;
+            
+        }
+        .container-btn{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 56px auto;
+            width: 450px;
+        }
+        .btn-ok{
+            background-color: #52c41a;
+        }
+        .btn-ok:hover{
+            background-color: #73da40;
+            top: -3px;
+        }
+        .btn-ok:active{
+            background-color: #73da40;
+            top: -1px;
+        }
+        .btn-not-ok{
+            position: absolute;
+            margin-left: calc(450px - 160px);
+            background-color: #ff4d4f;
+        }
+        audio{
+            position: absolute;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="box-content">
+            <h1 class="heading">... &#60;3</h1>
+            <h3 class="sub-content"> ???</h3>
+            <div class="container-btn">
+                <div class="btn btn-ok">Có</div>
+                <div class="btn btn-not-ok">Không</div>
+            </div>
+        </div>
+        <audio controls autoplay>
+            <source src="./music-bg.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+
+    <script>
+        const beat = document.querySelector("audio");
+        const containerBtn = document.querySelector(".container-btn");
+        const heading = document.querySelector(".heading");
+        const subContent = document.querySelector(".sub-content");
+        const btnOk =  document.querySelector(".btn-ok");
+        const btnNotOk = document.querySelector(".btn-not-ok");
+        const widthScreen = screen.width;
+        const minLeft = screen.width - 450/2;
+        beat.volume = 0.5;
+
+        btnNotOk.addEventListener("mouseover", function(){
+            let newX = Math.floor(Math.random() * 800 + 160);
+            let newY = Math.floor(Math.random() * 500 + 68);
+            beat.play();
+            btnNotOk.style.left = newX + "px";
+            btnNotOk.style.top = newY + "px";
+        })
+
+        btnOk.addEventListener("click", function(){
+            heading.style.marginTop = "80px";
+            heading.style.fontSize = "8rem";
+            subContent.style.fontSize = "6rem";
+            heading.textContent = "Anh biết mà ^-^";
+            subContent.textContent = "I Love You 3000 !!!";
+            containerBtn.style.display = "none";
+        })
+    </script>
+</body>
+</html>
